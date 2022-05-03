@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -65,5 +66,25 @@ public class ArticleController {
 
         //3. set the view page
         return "articles/show";
+    }
+
+    @GetMapping("/articles")
+    public String index(Model model){
+        //1 , brind all List of Article
+
+//        List<Article>articleEntityList = (List<Article>) articleRepository.findAll();
+        //-----> articleRepository.findAll is not same type as List<Article> so i can cast it by (List<Article>)
+
+
+        //OR ------> we could get those data as ArrayList . --> go to ArticleRepository interface and add @Override
+        List<Article>articleEntityList = articleRepository.findAll();
+        //---> even if i override interface method as ArrayList, I can still use List because it is upperClass than ArrayList
+
+        //2 .  send those List of  Article to view
+        model.addAttribute("articleList",articleEntityList);
+
+        //3.set view page
+
+        return "articles/index";
     }
 }
