@@ -23,6 +23,10 @@ public class Article {
     }
 
 
+    public Article() {
+
+    }
+
     @Override
     public String toString() {
         return "Article{" +

@@ -4,13 +4,14 @@ package com.example.firstProject.controller;
 import com.example.firstProject.dto.ArticleForm;
 import com.example.firstProject.model.Article;
 import com.example.firstProject.repositories.ArticleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ArticleController {
-
+    @Autowired // 스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
     private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
@@ -28,6 +29,7 @@ public class ArticleController {
 
         // 2. let Rpository save Entity into DB
         Article saved =  articleRepository.save(article);
+        System.out.println(saved);
 
         return "";
     }
