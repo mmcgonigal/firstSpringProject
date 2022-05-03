@@ -29,7 +29,6 @@ public class Article {
 //
 //
     public Article() {
-
     }
 //
 //    @Override
