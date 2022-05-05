@@ -11,6 +11,7 @@ public class ArticleForm {
 
     private String title;
     private String description;
+    private Long id;
 
 
 
@@ -39,6 +40,6 @@ public class ArticleForm {
 
 
     public Article toEntity() {
-        return new Article(null, title, description);
+        return new Article(id, title, description);
     }
 }

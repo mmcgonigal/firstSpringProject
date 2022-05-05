@@ -18,6 +18,7 @@ public class Article {
     private Long id;
 
     @Column
+
     private String title;
     private String description;
 

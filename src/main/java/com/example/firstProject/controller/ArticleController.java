@@ -34,11 +34,6 @@ public class ArticleController {
         //sout --> this is not recommended in real server and it does not leave any record. so will replace with logging
 
         log.info(form.toString());
-
-
-
-
-
         // 1. dto to Entity dto 를 변환 -> entity
         Article article = form.toEntity();
 
@@ -48,7 +43,7 @@ public class ArticleController {
 
         log.info(saved.toString());
 
-        return "";
+        return "redirect:/articles";
     }
 
     @GetMapping("/articles/{id}")
@@ -69,7 +64,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
-    public String index(Model model){
+    public String index(Model model, Long id){
         //1 , brind all List of Article
 
 //        List<Article>articleEntityList = (List<Article>) articleRepository.findAll();
@@ -78,6 +73,7 @@ public class ArticleController {
 
         //OR ------> we could get those data as ArrayList . --> go to ArticleRepository interface and add @Override
         List<Article>articleEntityList = articleRepository.findAll();
+
         //---> even if i override interface method as ArrayList, I can still use List because it is upperClass than ArrayList
 
         //2 .  send those List of  Article to view
@@ -87,4 +83,27 @@ public class ArticleController {
 
         return "articles/index";
     }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+        // bring a data that i want to edit
+       Article articleEntity=  articleRepository.findById(id).orElse(null);
+       model.addAttribute("article",articleEntity);
+
+        // set view page
+
+        return "articles/edit";
+    }
+
+    @PostMapping("/article/update")
+    public String update(ArticleForm form){
+
+        //1.DTO to entity
+
+        //entitiy to DB
+
+        return"";
+    }
+
+
 }
